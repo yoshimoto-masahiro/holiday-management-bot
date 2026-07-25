@@ -1,14 +1,17 @@
+/**
+ * 休日管理表の記入リマインダー通知スクリプト
+ * 実行条件: 毎月 第2・第4金曜日
+ */
 function sendHolidayReminder() {
   // ==================================================
-  // ▼ 設定エリア：ここを書き換えてください
+  // ▼ 設定エリア
   // ==================================================
   
-  // 1. Google ChatのWebhook URL（スクリプト設定値から取得）
-  // ※必ずスクリプトプロパティ値（WEBHOOK_URL）を設定してください
+  // 1. Google ChatのWebhook URL（スクリプトプロパティから取得）
   const WEBHOOK_URL = PropertiesService.getScriptProperties().getProperty('WEBHOOK_URL');
   
   // 2. カレンダーのあるスプレッドシートのURL（通知のリンク用）
-  const SHEET_URL = 'https://docs.google.com/spreadsheets/d/19H2JxxmjZxVLMNWH_JW7EEM9t6a3CsK1/edit?gid=11282270#gid=11282270'; 
+  const SHEET_URL = 'https://docs.google.com/spreadsheets/d/********************************************/edit'; 
 
   // スクリプトプロパティ未設定時のガード処理
   if (!WEBHOOK_URL) {
@@ -32,7 +35,6 @@ function sendHolidayReminder() {
   const isFriday = (day === 5);
 
   // 金曜日、かつ「第2週」または「第4週」の場合のみ実行
-  // 金曜日、かつ「第2週」または「第4週」の場合のみ実行
   if (isFriday && (isSecondWeek || isFourthWeek)) {
     postToChat(WEBHOOK_URL, SHEET_URL);
   } else {
@@ -41,8 +43,12 @@ function sendHolidayReminder() {
   }
 }
 
+/**
+ * Google Chatへの通知送信処理
+ * @param {string} webhookUrl 
+ * @param {string} sheetUrl 
+ */
 function postToChat(webhookUrl, sheetUrl) {
-  // チャットに送るメッセージの内容
   const message = {
     "text": "📢*【アナウンス】休日管理表の記入確認*\n\n運営日に向けて、休日の予定記入をお願いします。\n※記載ルールに則って調整をお願いします。\n\n<" + sheetUrl + "|📅👉 シートを開く>"
   };
@@ -59,4 +65,3 @@ function postToChat(webhookUrl, sheetUrl) {
   } catch (e) {
     console.log("送信エラー: " + e.toString());
   }
-}
