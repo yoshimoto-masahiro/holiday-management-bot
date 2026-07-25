@@ -1,5 +1,5 @@
 # 休日管理表リマインド通知 (Google Apps Script)
-# holiday-management-bot
+## holiday-management-bot
 
 Google Chatの特定のスペースに対し、毎月第2・第4金曜日に「休日管理表」の入力リマインダーを自動送信するGASプログラムです。
 
