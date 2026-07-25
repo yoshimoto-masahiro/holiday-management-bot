@@ -12,6 +12,7 @@ function sendHolidayReminder() {
   const WEBHOOK_URL = PropertiesService.getScriptProperties().getProperty('WEBHOOK_URL');
   
   // 2. カレンダーのあるスプレッドシートのURL（通知のリンク用）
+  //SHEET_URL <- 通知用のリンク先URLを貼り付けてください。 
   const SHEET_URL = 'https://docs.google.com/spreadsheets/d/********************************************/edit'; 
 
   // スクリプトプロパティ未設定時のガード処理
