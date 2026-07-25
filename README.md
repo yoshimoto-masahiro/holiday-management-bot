@@ -1,2 +1,2 @@
-# holiday-management-bot-
+# holiday-management-bot
 GAS management bot 
