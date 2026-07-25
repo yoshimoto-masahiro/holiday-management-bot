@@ -8,6 +8,7 @@ function sendHolidayReminder() {
   // ==================================================
   
   // 1. Google ChatのWebhook URL（スクリプトプロパティから取得）
+  // 必ずスクリプトプロパティ（WEBHOOK_URL）を設定してください。
   const WEBHOOK_URL = PropertiesService.getScriptProperties().getProperty('WEBHOOK_URL');
   
   // 2. カレンダーのあるスプレッドシートのURL（通知のリンク用）
